@@ -1,0 +1,22 @@
+// 函数原型
+public final class ImageConverter {
+
+    static {
+        System.loadLibrary("image_converter");
+    }
+
+    public static native void rgbaToNV21(byte[] rgba, int width, int height, byte[] nv21);
+
+    public static native void rgbaToI420(byte[] rgba, int width, int height, byte[] i420);
+
+    public static native void rgbaToYUV(byte[] rgba, int width, int height, byte[] yBytes, byte[] uBytes, byte[] vBytes);
+
+    public static native void argbToRGBA(int[] argb, int width, int height, int[] rgba);
+
+    public static native void nv21ToRGBA(byte[] nv21, int width, int height, byte[] rgba);
+
+    public static native void nv21ToI420(byte[] nv21, int width, int height, byte[] i420);
+
+    public static native void nv21ToYUV(byte[] nv21, int width, int height, byte[] yBytes, byte[] uBytes, byte[] vBytes);
+
+}
