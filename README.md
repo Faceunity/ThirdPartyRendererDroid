@@ -113,7 +113,39 @@ android {
 
 **注意：** 上面一系列方法的使用，具体在 demo 中的 `MainActivity` 类，参考该代码示例接入即可。
 
-### 三、接口介绍
+### 三、美颜参数
+
+美颜参数保存功能，在 `BeautyParameterModel `中实现。
+
+在初始化时将美颜参数从`SharedPreferences`中读取到内存中供APP使用；
+
+```java
+public static void init() {
+    //从 PreferenceUtil 中读取参数到内存
+    sFilterLevel = PreferenceUtil.getFilterParams();
+    sFilter = PreferenceUtil.getFilter(FilterEnum.nature1.create());
+    sColorLevel = PreferenceUtil.getFloatParam(BeautificationParam.COLOR_LEVEL, 0.3f);
+	//还有其他参数
+    
+	//将保存好的参数重新绑定
+    bindParams();
+}
+```
+
+```java
+//保存参数只需调用
+public static void saveParams() {
+    //从内存中读取参数保存到PreferenceUtil中
+    PreferenceUtil.setFilterParams(sFilterLevel);
+    PreferenceUtil.setFilter(sFilter);
+	//还有其他参数
+
+    //将保存好的参数重新绑定
+    bindParams();
+}
+```
+
+### 四、接口介绍
 
 - IFURenderer 是核心接口，提供了创建、销毁、处理等功能。使用时通过 FURenderer.Builder 创建合适的 FURenderer 实例即可。
 - IModuleManager 是模块管理接口，用于创建和销毁各个功能模块，FURenderer 是其实现类。
